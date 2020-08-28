@@ -1,0 +1,63 @@
+<html>
+ <head> 
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+ </head> 
+ <body> 
+  <div id="app"> 
+   <table> 
+    <tbody> 
+     <tr v-for="item in one"> 
+      <td><a :href="item.url">{{item.name}}</a></td> 
+     </tr> 
+    </tbody> 
+   </table> 
+  </div> 
+  <script>
+  let app = new Vue({
+  el: '#app',
+  data: () => ({
+    type: true,
+    one: '',
+    two: 1,
+    list: []
+  }),
+
+  mounted() {
+    axios
+      .get('https://swapi.dev/api/planets/')
+      .then(response => {
+        this.one = response.data.results
+       
+        
+      })
+      .catch(error => {
+        
+      })
+      .finally();
+      
+  }
+});
+</script> 
+  <style>
+  div {
+    text-align: center;
+    width: 70%;
+  }
+
+
+  table {
+      border: 1px solid black;
+      border-collapse: collapse;
+  }
+
+  td {
+      border: 1px solid black;
+  }
+
+  img {
+    width: 60px;
+  }
+</style> 
+ </body>
+</html>
